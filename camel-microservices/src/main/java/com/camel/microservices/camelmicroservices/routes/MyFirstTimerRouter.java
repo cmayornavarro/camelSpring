@@ -24,7 +24,11 @@ public class MyFirstTimerRouter extends RouteBuilder {
                 // Message").to("log:first-timer");
                 // .transform().constant("My is Message:" +
                 // LocalDateTime.now()).to("log:first-timer");
-                .bean(timeClass, "getCurrentTime2").to("log:first-timer");
+                // .bean(timeClass,
+                // "getCurrentTime2").to("direct:first-timer2");
+                .bean(timeClass, "getCurrentTime2").to("log:first-timer2");
+
+        from("direct:first-timer2").transform().constant("My direct").to("log:loggingDirect");
     }
 
 }
